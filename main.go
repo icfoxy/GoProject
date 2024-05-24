@@ -24,9 +24,10 @@ func main() {
 		MaxAge:           300,
 	}))
 
-	//往路由中加入两个路径以及对应处理方法
-	router.HandleFunc("/health", TestHealth)
-	router.HandleFunc("/hello/aloha", TestAloha)
+	//往路由中加入两个路径以及对应处理方法,并制定其访问模式
+	router.Get("/health", TestHealth)
+	router.Get("/hello/aloha", TestAloha)
+	router.Get("/err", TestErr)
 
 	//创建服务器
 	serv := &http.Server{
@@ -37,6 +38,7 @@ func main() {
 	//开启服务器
 	err := serv.ListenAndServe()
 	if err != nil {
-		log.Fatal("something went wrong with server")
+		log.Println("something went wrong with server:")
+		log.Fatal(err)
 	}
 }
