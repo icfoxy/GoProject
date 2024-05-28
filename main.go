@@ -28,6 +28,8 @@ func main() {
 	router.Get("/health", TestHealth)
 	router.Get("/hello/aloha", TestAloha)
 	router.Get("/err", TestErr)
+	router.Post("/printUser", PrintUser)
+	router.Get("/sendAloha", TestSendAloha)
 
 	//创建服务器
 	serv := &http.Server{
